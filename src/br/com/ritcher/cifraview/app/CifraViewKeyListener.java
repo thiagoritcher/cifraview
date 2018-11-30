@@ -34,15 +34,7 @@ final class CifraViewKeyListener extends KeyAdapter {
 	public void keyReleased(KeyEvent e) {
 		super.keyReleased(e);
 		if ((e.getKeyCode() == KeyEvent.VK_F1)){
-		    JOptionPane.showMessageDialog(this.cifraViewMain.frame, 
-		    		"CTRL-o: Opens a file from the file system. \n" +
-		    		"CTRL-ALT-o: Open the last created file on the selected file folder. \n" +
-		    		"CTRL-F: Change the font size. \n" +
-		    		"CTRL-S: Change the font spacing.\n" +
-		    		"CTRL-P: Searches youtube using the current file name\n" +
-		    		"CTRL-G: Searches google for a tab\n"
-		    	,"Ajuda",  JOptionPane.INFORMATION_MESSAGE);
-
+		   cifraViewMain.showHelp();
 		}
 
 		

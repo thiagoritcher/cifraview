@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -81,6 +82,9 @@ public class CifraViewMain {
 		if(file != null){
 			cifraFile.openFile();
 		}
+		else {
+			showHelp();
+		}
 	}
 	
 	
@@ -88,5 +92,17 @@ public class CifraViewMain {
 		frame.invalidate();
 		frame.validate();
 		frame.repaint();
+	}
+
+
+	public void showHelp() {
+		 JOptionPane.showMessageDialog(frame, 
+		    		"CTRL-o: Opens a file from the file system. \n" +
+		    		"CTRL-ALT-o: Open the last created file on the selected file folder. \n" +
+		    		"CTRL-F: Change the font size. \n" +
+		    		"CTRL-S: Change the font spacing.\n" +
+		    		"CTRL-P: Searches youtube using the current file name\n" +
+		    		"CTRL-G: Searches google for a tab\n"
+		    	,"Ajuda",  JOptionPane.INFORMATION_MESSAGE);
 	}
 }

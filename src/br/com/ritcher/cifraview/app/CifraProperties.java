@@ -25,6 +25,8 @@ final class CifraProperties {
 			dir = System.getenv("APPDATA");
 		}
 		propertiesFile =  new File(dir + File.separator + "GuitarTabViewer" + File.separator +  "app.properties");
+		System.out.println(propertiesFile);
+		
 	}
 
 	File propertiesFile;
