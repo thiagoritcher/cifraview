@@ -4,7 +4,10 @@
     <!--ANT 1.7 is required                                        -->
 	
 	<property name="out" value="${basedir}/out" />
-	<target name="create_run_jar">
+	<target name="build">
+		<javac srcdir="${basedir}/src" destdir="${basedir}/bin"/>	
+	</target>
+	<target name="create_run_jar" depends="build">
         <jar destfile="${basedir}/out/cifraview.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="br.com.ritcher.cifraview.app.CifraViewMain"/>

@@ -65,7 +65,7 @@ final class CifraViewKeyListener extends KeyAdapter {
 		}
 		
 		if ((e.getKeyCode() == KeyEvent.VK_F) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
-			String size = JOptionPane.showInputDialog(this.cifraViewMain.frame, "Digite o tamanho da fonte:(No inteiro)");
+			String size = JOptionPane.showInputDialog(this.cifraViewMain.frame, "Font size:(current:"+cifraViewMain.fontsize+" )");
 			try {
 				if(size == null){
 					return;
@@ -80,7 +80,7 @@ final class CifraViewKeyListener extends KeyAdapter {
 		}
 		
 		if ((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
-			String size = JOptionPane.showInputDialog(this.cifraViewMain.frame, "Digite o espaçamento da fonte (Quanto maior menos espaço):");
+			String size = JOptionPane.showInputDialog(this.cifraViewMain.frame, "Font spacing(current: "+cifraViewMain.lineSpacing+"):");
 			try {
 				if(size == null){
 					return;
@@ -95,7 +95,7 @@ final class CifraViewKeyListener extends KeyAdapter {
 		}
 		
 		if ((e.getKeyCode() == KeyEvent.VK_A) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
-			String size = JOptionPane.showInputDialog(this.cifraViewMain.frame, "Configuração antialias (1-8):\n" +
+			String size = JOptionPane.showInputDialog(this.cifraViewMain.frame, "Antialias config (current:"+cifraViewMain.antialiasing+")  (1-8):\n" +
 					"1:ON 2:OFF 3:DEFAULT 4:GASP 5:LCD_HRGB 6:LCD_HBGR 7:LCD_VRGB 8:LCD_VBGR");
 			try {
 				if(size == null){
@@ -150,6 +150,9 @@ final class CifraViewKeyListener extends KeyAdapter {
 				e1.printStackTrace();
 			}
 
+		}
+		if ((e.getKeyCode() == KeyEvent.VK_SPACE)){
+			this.cifraViewMain.cicleScreen();
 		}
 	}
 }
