@@ -4,7 +4,8 @@
     <!--ANT 1.7 is required                                        -->
 	
 	<property name="out" value="${basedir}/out" />
-	<target name="build">
+    <target name="build">
+        <mkdir dir="${basedir}/bin"/>
 		<javac srcdir="${basedir}/src" destdir="${basedir}/bin"/>	
 	</target>
 	<target name="create_run_jar" depends="build">

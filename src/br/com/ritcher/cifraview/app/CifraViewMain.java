@@ -67,13 +67,13 @@ public class CifraViewMain {
 		});
 		
 		frame.addKeyListener(new CifraViewKeyListener(this));
-		frame.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				super.mouseReleased(e);
-				panel.cicle();
-			}
-		});
+//		frame.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseReleased(MouseEvent e) {
+//				super.mouseReleased(e);
+//				panel.cicle();
+//			}
+//		});
 		
 		panel = new CifraPanel(this);
 		//panel.setBackground(Color.white);
@@ -106,7 +106,7 @@ public class CifraViewMain {
 
 	public void showHelp() {
 		 JOptionPane.showMessageDialog(frame, 
-		    		"Space or click: Move to next screen. \n" +
+		    		"Space: Move to next screen. \n" +
 		    		"CTRL-o: Opens a file from the file system. \n" +
 		    		"CTRL-ALT-o: Open the last created file on the selected file folder. \n" +
 		    		"CTRL-F: Change the font size. \n" +
