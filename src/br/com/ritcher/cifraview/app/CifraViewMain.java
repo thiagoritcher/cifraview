@@ -7,12 +7,15 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.*;
+import java.awt.*;
 import java.io.File;
 import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.*;
 
 
 public class CifraViewMain {
@@ -64,7 +67,9 @@ public class CifraViewMain {
 			}
 		});
 		
-		frame.addKeyListener(new CifraViewKeyListener(this));
+        CifraActions act = new CifraActions(this);
+		frame.addKeyListener(new CifraViewKeyListener(act));
+		frame.addMouseListener(new CifraViewMouseListener(act));
 		
 		panel = new CifraPanel(this);
 		//panel.setBackground(Color.white);

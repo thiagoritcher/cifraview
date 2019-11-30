@@ -94,10 +94,9 @@ final class CifraPanel extends JPanel {
 				y = fontHeight;
 			}
 		}
-		
 	}
 	
 	boolean isChordLine(String line){
-		return line.matches("\\s*([ABCDEFGb#1-9mM\\s/\\(\\)])+\\s*");
+		return line.matches("\\s*([ABCDEFGb#1-9mM\\-\\s/\\(\\)])+\\s*");
 	}
 }
