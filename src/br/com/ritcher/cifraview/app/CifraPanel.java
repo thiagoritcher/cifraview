@@ -23,6 +23,7 @@ final class CifraPanel extends JPanel {
 	 */
 	CifraPanel(CifraViewMain cifraViewMain) {
 		this.cifraViewMain = cifraViewMain;
+		
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -38,6 +39,10 @@ final class CifraPanel extends JPanel {
 		RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_VBGR
 		
 	};
+
+	private int x, xStart = -5;
+
+	private int nextcicle = -5;
 	
 	@Override
 	public void paint(Graphics g1) {
@@ -65,16 +70,20 @@ final class CifraPanel extends JPanel {
 		FontMetrics fontMetrics = this.cifraViewMain.frame.getFontMetrics(textFont);
 		int fontHeight = fontMetrics.getHeight() - this.cifraViewMain.lineSpacing;
 		
-		int y = fontHeight, x = 5;
+		int y = fontHeight;
 		Rectangle2D bounds;
 		double maxx = 0;
+		x = -xStart; 
+		boolean hasNextCicle = false;
 		
 		for (Iterator<String> iterator = this.cifraViewMain.lines.iterator(); iterator.hasNext();) {
 			String string = (String) iterator.next();
 			
+			boolean chordLine = false;
 			if(this.isChordLine(string)){
 				g.setFont(chordFont);
 				g.setColor(chordColor);
+				chordLine = true;
 			}
 			else {
 				g.setFont(textFont);
@@ -89,14 +98,34 @@ final class CifraPanel extends JPanel {
 			bounds = fontMetrics.getStringBounds(string, 0, string.length(), g);
 			maxx = Math.max(maxx, bounds.getWidth());
 			
-			if(y > getHeight() - 10){
+			double space = chordLine ? fontHeight: fontHeight * 2;
+			space += 10;
+			
+			if(y > getHeight() - space){
 				x += maxx + 20;
 				y = fontHeight;
+				
+				if(x + maxx > getWidth()) {
+					nextcicle = xStart + x;
+					hasNextCicle = true;
+					//System.out.println("Break " + nextcicle);
+					break;
+				}
 			}
+		}
+		
+		if(!hasNextCicle) {
+			nextcicle = -5;
+//			System.out.println("Reseting ");
 		}
 	}
 	
 	boolean isChordLine(String line){
 		return line.matches("\\s*([ABCDEFGb#1-9mM\\-\\s/\\(\\)])+\\s*");
+	}
+
+	public void cicle() {
+		 xStart = nextcicle - 5;
+		 repaint();
 	}
 }

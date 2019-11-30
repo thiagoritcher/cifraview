@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.*;
@@ -30,7 +32,7 @@ public class CifraViewMain {
 	}
 	
 	JFrame frame;
-	JPanel panel;
+	CifraPanel panel;
 	List<String> lines;
 	File file;
 	
@@ -46,7 +48,7 @@ public class CifraViewMain {
 		cifraProperties.loadProperties();
 		
 		frame = new JFrame("Guitar Tab Viewer");
-		frame.setMinimumSize(new Dimension(300, 100));
+		frame.setSize(new Dimension(800, 600));
 		frame.setLayout(new BorderLayout());
 		
 		frame.addComponentListener(new ComponentAdapter() {
@@ -77,7 +79,7 @@ public class CifraViewMain {
 		layout.setRows(1);
 		
 		
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frame.setVisible(true);
@@ -102,6 +104,7 @@ public class CifraViewMain {
 
 	public void showHelp() {
 		 JOptionPane.showMessageDialog(frame, 
+		    		"Space: Move to next screen. \n" +
 		    		"CTRL-o: Opens a file from the file system. \n" +
 		    		"CTRL-ALT-o: Open the last created file on the selected file folder. \n" +
 		    		"CTRL-F: Change the font size. \n" +
@@ -109,5 +112,10 @@ public class CifraViewMain {
 		    		"CTRL-P: Searches youtube using the current file name\n" +
 		    		"CTRL-G: Searches google for a tab\n"
 		    	,"Ajuda",  JOptionPane.INFORMATION_MESSAGE);
+	}
+
+
+	public void cicleScreen() {
+		panel.cicle();
 	}
 }

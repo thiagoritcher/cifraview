@@ -40,10 +40,10 @@ class CifraActions {
         });
         Arrays.sort(files, new FileModifiedComparator());
         this.cifraViewMain.file = files[0];
-        SimpleDateFormat format = new SimpleDateFormat();
-        for (int i = 0; i < files.length; i++) {
-            System.out.println(files[i].getName() + "\t" + format.format(new Date(files[i].lastModified())));
-        }
+//        SimpleDateFormat format = new SimpleDateFormat();
+//        for (int i = 0; i < files.length; i++) {
+//            System.out.println(files[i].getName() + "\t" + format.format(new Date(files[i].lastModified())));
+//        }
         this.cifraViewMain.cifraFile.openFile();
     }
     
@@ -146,5 +146,9 @@ class CifraActions {
             JOptionPane.showMessageDialog(null, "Valor invalido", "Erro 2", JOptionPane.ERROR_MESSAGE);
             e1.printStackTrace();
         }
+    }
+
+    public void cicleScreen() {
+    	this.cifraViewMain.cicleScreen();
     }
 }

@@ -58,13 +58,15 @@ final class CifraViewKeyListener extends KeyAdapter {
             cifraActions.changeAntialiasing();
 		}
 		
-		
 		else if ((e.getKeyCode() == KeyEvent.VK_G) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
             cifraActions.searchGoogle();
 		}
 		
 		else if ((e.getKeyCode() == KeyEvent.VK_P) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
             cifraActions.searchYoutube();
+		}
+		if ((e.getKeyCode() == KeyEvent.VK_SPACE)){
+            cifraActions.cicleScreen();
 		}
 	}
 }
