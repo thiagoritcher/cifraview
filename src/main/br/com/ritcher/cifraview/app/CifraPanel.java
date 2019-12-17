@@ -24,6 +24,7 @@ final class CifraPanel extends JPanel {
 	CifraPanel(CifraViewMain cifraViewMain) {
 		this.cifraViewMain = cifraViewMain;
 		this.chordLine = new ChordLine();	
+        this.reset();
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -40,9 +41,6 @@ final class CifraPanel extends JPanel {
 		
 	};
 
-	private int x, xStart = -5;
-
-	private int nextcicle = -5;
 
 	ChordLine chordLine;
 
@@ -135,6 +133,18 @@ final class CifraPanel extends JPanel {
 		}
 	}
 	
+	private int x, xStart;
+
+	private int nextcicle;
+	
+    public void reset() {
+         x = 0;
+         xStart = -5;
+         nextcicle = -5;
+
+		 this.chordLine.setTone(0);
+		 repaint();
+	}
 
 	public void cicle() {
 		 xStart = nextcicle - 5;

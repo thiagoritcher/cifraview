@@ -45,6 +45,7 @@ class CifraActions {
 //            System.out.println(files[i].getName() + "\t" + format.format(new Date(files[i].lastModified())));
 //        }
         this.cifraViewMain.cifraFile.openFile();
+        this.cifraViewMain.getPanel().reset();
     }
     
     public void openFile() {
@@ -56,6 +57,7 @@ class CifraActions {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             this.cifraViewMain.file = jfc.getSelectedFile();
             this.cifraViewMain.cifraFile.openFile();
+            this.cifraViewMain.getPanel().reset();
         }
     }
 

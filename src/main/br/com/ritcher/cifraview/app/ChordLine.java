@@ -24,14 +24,16 @@ public class ChordLine {
 
 
 	public String getLine(String orig){	
-		Pattern p = Pattern.compile("\\s*([^\\s\\/]+)\\s*");
+		Pattern p = Pattern.compile("([^\\/\\s]+)");
 		Matcher m = p.matcher(orig);
 		ArrayList<String> chords = new ArrayList();
 		ArrayList<Integer[]> finds = new ArrayList();
 
 		while(m.find()){
-			finds.add(new Integer[]{m.start(), m.end()});
-			String c = orig.substring(m.start(), m.end());
+            Integer[] ps = new Integer[]{m.start(), m.end()};
+			finds.add(ps);
+			String c = orig.substring(ps[0], ps[1]);
+            //System.out.println("|"+c+"|");
 			chords.add(getChord(c, this.tone));
 		}
 
@@ -96,7 +98,7 @@ public class ChordLine {
 		}
 		index = (index + tone);
 		while(index < 0){
-			index += chordList.size() -1;
+			index += chordList.size();
 		}
 		index = index % chordList.size();
 		
