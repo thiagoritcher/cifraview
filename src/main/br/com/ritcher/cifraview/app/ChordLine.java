@@ -25,7 +25,7 @@ public class ChordLine {
 	public int w,x,z;
 
 	public String getLine(String orig){	
-		Pattern p = Pattern.compile("\\s*([^\\s]+)\\s*");
+		Pattern p = Pattern.compile("\\s*([^\\s/\\\\]+)\\s*");
 		Matcher m = p.matcher(orig);
 		ArrayList<String> chords = new ArrayList();
 		ArrayList<Integer[]> finds = new ArrayList();
