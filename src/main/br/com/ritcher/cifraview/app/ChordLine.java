@@ -22,20 +22,19 @@ public class ChordLine {
 		this.tone--;
 	}
 
-	public int w,x,z;
 
 	public String getLine(String orig){	
-		Pattern p = Pattern.compile("\\s*([^\\s/\\\\]+)\\s*");
+		Pattern p = Pattern.compile("\\s*([^\\s\\/]+)\\s*");
 		Matcher m = p.matcher(orig);
 		ArrayList<String> chords = new ArrayList();
 		ArrayList<Integer[]> finds = new ArrayList();
 
 		while(m.find()){
-			w++;
 			finds.add(new Integer[]{m.start(), m.end()});
 			String c = orig.substring(m.start(), m.end());
 			chords.add(getChord(c, this.tone));
 		}
+
 
 		String result = orig;
 		for(int i = chords.size() -1; i > -1; i--){
@@ -65,20 +64,19 @@ public class ChordLine {
 	HashMap<String,String> chordEq = new HashMap<String,String>();
 	ArrayList<String> chordList = new ArrayList<String>();
 
-	public String a,b,c,d,e,f;
-
 	public String getChord(String chord, int tone){
 		String leter = chord.substring(0,1).toUpperCase();
 		String diff = null;
 
-		a = leter;
 
 		String base;	
 		if(chord.length() > 1){
 			diff = chord.substring(1,2).toLowerCase();
 		}
+		else {
+			diff = "";
+		}
 		
-		b = diff;
 		
 		if(diff != null && !"#".equals(diff) && !"b".equals(diff)){
 			base = leter;
@@ -90,8 +88,6 @@ public class ChordLine {
 		else {
 			base = leter + diff;
 		}
-
-		c = base;
 
 
 		int index = chordList.indexOf(base);

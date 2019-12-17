@@ -15,8 +15,8 @@ public class ChordLineTest {
   @Test public void chordLine() {
   		ChordLine cl = new ChordLine();
 		cl.setTone(-2);
-		String param = "( Dm  Gb  CM7  F(9m) Gm/D)";
+		String param = "( Dm  Gb  CM7  F(9m) Gm/D G/D)";
 		String result =	cl.getLine(param);
-		assertEquals( "( Cm  E  A#M7  D#(9m) Fm/C)", result);
+		assertEquals( "( Cm  E  A#M7  D#(9m) Fm/C F/C)", result);
 	}
 }
