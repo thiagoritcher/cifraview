@@ -2,21 +2,53 @@
 <project default="create_run_jar" name="Create Runnable Jar for Project CifraView">
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
-	
-	<property name="out" value="${basedir}/out" />
-    
-    <target name="build">
-        <mkdir dir="${basedir}/bin"/>
-		<javac srcdir="${basedir}/src" destdir="${basedir}/bin"/>	
-	</target>
 
-    <target name="create_run_jar" depends="build">
-        <jar destfile="${basedir}/out/cifraview.jar" filesetmanifest="mergewithoutmain">
+	
+	<property name="test.build.dir" value="${basedir}/build/test" />
+	<property name="main.build.dir" value="${basedir}/build/main" />
+	<property name="main.src.dir" value="${basedir}/src/main" />
+	<property name="test.src.dir" value="${basedir}/src/test" />
+
+	<path id="classpath.test">
+		<fileset dir="lib/test">
+			<include name="**/*.jar"/>
+		</fileset>
+		<pathelement location="${main.build.dir}"/>
+	</path>
+    
+    <target name="compile">
+        <mkdir dir="${main.build.dir}"/>
+		<javac srcdir="${main.src.dir}" destdir="${main.build.dir}"/>	
+	</target>
+    
+	<target name="test-compile" depends="compile">
+        <mkdir dir="${test.build.dir}"/>
+		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}">
+			<classpath refid="classpath.test" />
+		</javac>
+	</target>
+	
+    <target name="test" depends="test-compile">
+		<junit printsummary="on" haltonfailure="yes" fork="true">
+			<classpath>
+				<path refid="classpath.test"/>
+				<pathelement location="${test.build.dir}"/>
+			</classpath>
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="${test.src.dir}" includes="**/*Test*.java" />
+			</batchtest>
+		</junit>
+	</target>
+	
+
+    <target name="create_run_jar" depends="compile">
+        <jar destfile="${basedir}/build/cifraview.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="br.com.ritcher.cifraview.app.CifraViewMain"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
-            <fileset dir="${basedir}/bin"/>
+            <fileset dir="${main.build.dir}"/>
         </jar>
     </target>
 </project>

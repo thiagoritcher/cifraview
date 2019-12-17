@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 final class CifraViewMouseListener extends MouseAdapter implements ActionListener {
 	
     JPopupMenu popup;
-    JMenuItem itemOpen, itemOpenLast, itemFontSize, itemFontSpacing,  itemFontAntialias, itemYoutube, itemGoogle; 
+    JMenuItem itemOpen, itemOpenLast, itemFontSize, itemFontSpacing,  itemFontAntialias, itemYoutube, itemGoogle, itemIncreaseTone, itemDecreaseTone; 
 
     
 	/**
@@ -57,6 +57,14 @@ final class CifraViewMouseListener extends MouseAdapter implements ActionListene
         itemOpenLast = new JMenuItem("Open last");
         itemOpenLast.addActionListener(this);
         popup.add(itemOpenLast);
+
+        itemIncreaseTone = new JMenuItem("Increase tone");
+        itemIncreaseTone.addActionListener(this);
+        popup.add(itemIncreaseTone);
+        
+		itemDecreaseTone = new JMenuItem("Decrease tone");
+        itemDecreaseTone.addActionListener(this);
+        popup.add(itemDecreaseTone);
 
         itemFontSize = new JMenuItem("Font size");
         itemFontSize.addActionListener(this);
@@ -100,6 +108,12 @@ final class CifraViewMouseListener extends MouseAdapter implements ActionListene
         }
         else if(e.getSource() == itemGoogle){
            cifraActions.searchGoogle();
+        }
+        else if(e.getSource() == itemIncreaseTone){
+           cifraActions.increaseTone();
+        }
+        else if(e.getSource() == itemDecreaseTone){
+           cifraActions.decreaseTone();
         }
 
     }

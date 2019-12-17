@@ -107,6 +107,8 @@ public class CifraViewMain {
 		    		"Space: Move to next screen. \n" +
 		    		"CTRL-o: Opens a file from the file system. \n" +
 		    		"CTRL-ALT-o: Open the last created file on the selected file folder. \n" +
+		    		"CTRL-J: Decrease tone. \n" +
+		    		"CTRL-K: Increase tone. \n" +
 		    		"CTRL-F: Change the font size. \n" +
 		    		"CTRL-S: Change the font spacing.\n" +
 		    		"CTRL-P: Searches youtube using the current file name\n" +
@@ -114,6 +116,9 @@ public class CifraViewMain {
 		    	,"Ajuda",  JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	public CifraPanel getPanel() {
+		return panel;
+	}
 
 	public void cicleScreen() {
 		panel.cicle();

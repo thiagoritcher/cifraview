@@ -23,7 +23,7 @@ final class CifraPanel extends JPanel {
 	 */
 	CifraPanel(CifraViewMain cifraViewMain) {
 		this.cifraViewMain = cifraViewMain;
-		
+		this.chordLine = new ChordLine();	
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -43,6 +43,19 @@ final class CifraPanel extends JPanel {
 	private int x, xStart = -5;
 
 	private int nextcicle = -5;
+
+	ChordLine chordLine;
+
+	
+	public void increaseTone(){
+		this.chordLine.increaseTone();
+		repaint();
+	}
+	
+	public void decreaseTone(){
+		this.chordLine.decreaseTone();
+		repaint();
+	}
 	
 	@Override
 	public void paint(Graphics g1) {
@@ -79,11 +92,13 @@ final class CifraPanel extends JPanel {
 		for (Iterator<String> iterator = this.cifraViewMain.lines.iterator(); iterator.hasNext();) {
 			String string = (String) iterator.next();
 			
-			boolean chordLine = false;
-			if(this.isChordLine(string)){
+			boolean isChordLine = false;
+			if(chordLine.isChordLine(string)){
+				string = chordLine.getLine(string);
+
 				g.setFont(chordFont);
 				g.setColor(chordColor);
-				chordLine = true;
+				isChordLine = true;
 			}
 			else {
 				g.setFont(textFont);
@@ -98,7 +113,7 @@ final class CifraPanel extends JPanel {
 			bounds = fontMetrics.getStringBounds(string, 0, string.length(), g);
 			maxx = Math.max(maxx, bounds.getWidth());
 			
-			double space = chordLine ? fontHeight: fontHeight * 2;
+			double space = isChordLine ? fontHeight: fontHeight * 2;
 			space += 10;
 			
 			if(y > getHeight() - space){
@@ -120,9 +135,6 @@ final class CifraPanel extends JPanel {
 		}
 	}
 	
-	boolean isChordLine(String line){
-		return line.matches("\\s*([ABCDEFGb#1-9mM\\-\\s/\\(\\)])+\\s*");
-	}
 
 	public void cicle() {
 		 xStart = nextcicle - 5;

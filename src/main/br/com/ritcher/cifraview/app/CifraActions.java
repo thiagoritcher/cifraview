@@ -114,6 +114,14 @@ class CifraActions {
             e2.printStackTrace();
         }
     }
+
+	public void increaseTone(){
+    	this.cifraViewMain.getPanel().increaseTone();
+	}
+	
+	public void decreaseTone(){
+    	this.cifraViewMain.getPanel().decreaseTone();
+	}
     
     public void searchGoogle() {
         String term = JOptionPane.showInputDialog(this.cifraViewMain.frame, "Input the search term:");
