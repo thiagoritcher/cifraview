@@ -41,11 +41,13 @@ public class CifraViewMain {
 	int antialiasing = 2;
 	
 	CifraProperties cifraProperties = new CifraProperties(this);
+	CifraToneFile cifraTone = new CifraToneFile(this);
 	
 	CifraFile cifraFile = new CifraFile(this);
 
 	public void createWindow(){
 		cifraProperties.loadProperties();
+		cifraTone.load();
 		
 		frame = new JFrame("Guitar Tab Viewer");
 		frame.setSize(new Dimension(800, 600));
@@ -66,6 +68,7 @@ public class CifraViewMain {
 			public void windowClosing(WindowEvent arg0) {
 				super.windowClosing(arg0);
 				cifraProperties.saveProperties();
+				cifraTone.save();
 			}
 		});
 		

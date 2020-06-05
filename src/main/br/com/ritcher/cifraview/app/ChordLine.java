@@ -4,10 +4,18 @@ import java.util.*;
 import java.util.regex.*;
 
 public class ChordLine {
+	
+	private ToneSetting toneFile;
+	
+	public void setToneFile(ToneSetting toneFile) {
+		this.toneFile = toneFile;
+	}
+	
 	private int tone = 0;
 
 	public void setTone(int tone){
 		this.tone = tone;
+		toneFile.setTone(tone);
 	}
 
 	public int getTone(){
@@ -16,10 +24,12 @@ public class ChordLine {
 
 	public void increaseTone(){
 		this.tone++;
+		toneFile.setTone(tone);
 	}
 	
 	public void decreaseTone(){
 		this.tone--;
+		toneFile.setTone(tone);
 	}
 
 

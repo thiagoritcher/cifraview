@@ -24,6 +24,7 @@ final class CifraPanel extends JPanel {
 	CifraPanel(CifraViewMain cifraViewMain) {
 		this.cifraViewMain = cifraViewMain;
 		this.chordLine = new ChordLine();	
+		this.chordLine.setToneFile(cifraViewMain.cifraTone);
         this.reset();
 	}
 
@@ -131,6 +132,10 @@ final class CifraPanel extends JPanel {
 			nextcicle = -5;
 //			System.out.println("Reseting ");
 		}
+		
+		g.setFont(textFont);
+		g.setColor(textColor);
+		g.drawString(Integer.toString(chordLine.getTone()), getWidth() - 20, 20);
 	}
 	
 	private int x, xStart;
@@ -142,7 +147,7 @@ final class CifraPanel extends JPanel {
          xStart = -5;
          nextcicle = -5;
 
-		 this.chordLine.setTone(0);
+//		 this.chordLine.setTone(0);
 		 repaint();
 	}
 
