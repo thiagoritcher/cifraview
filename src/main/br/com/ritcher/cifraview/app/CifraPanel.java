@@ -12,6 +12,7 @@ import java.util.Iterator;
 import javax.swing.JPanel;
 
 
+
 final class CifraPanel extends JPanel {
 	/**
 	 * 
@@ -135,12 +136,18 @@ final class CifraPanel extends JPanel {
 		
 		g.setFont(textFont);
 		g.setColor(textColor);
-		g.drawString(Integer.toString(chordLine.getTone()), getWidth() - 20, 20);
+		String t = "T:" + Integer.toString(chordLine.getTone());
+		String c = "C:" + Integer.toString(cap);
+		
+		g.drawString(t, (int)(getWidth() - fontMetrics.getStringBounds(t, g).getMaxX() -  10) , fontHeight + 10);
+		g.drawString(c, (int)(getWidth() - fontMetrics.getStringBounds(c, g).getMaxX() -  10) , 2 * fontHeight + this.cifraViewMain.lineSpacing + 10);
 	}
 	
 	private int x, xStart;
 
 	private int nextcicle;
+
+	private int cap;
 	
     public void reset() {
          x = 0;
@@ -154,5 +161,10 @@ final class CifraPanel extends JPanel {
 	public void cicle() {
 		 xStart = nextcicle - 5;
 		 repaint();
+	}
+
+	public void setCap(int cap) {
+		this.cap = cap;
+		this.repaint();
 	}
 }

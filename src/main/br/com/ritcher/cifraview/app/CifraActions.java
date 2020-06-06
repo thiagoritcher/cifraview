@@ -1,16 +1,13 @@
 package br.com.ritcher.cifraview.app;
 
 import java.awt.Desktop;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.io.*;
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -152,13 +149,29 @@ class CifraActions {
             JOptionPane.showMessageDialog(null, "Problemas ao abrir", "Erro", JOptionPane.ERROR_MESSAGE);
             e1.printStackTrace();
             
-        } catch (URISyntaxException e1) {
             JOptionPane.showMessageDialog(null, "Valor invalido", "Erro 2", JOptionPane.ERROR_MESSAGE);
             e1.printStackTrace();
-        }
+        } catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
     }
 
     public void cicleScreen() {
     	this.cifraViewMain.cicleScreen();
     }
+
+
+	public void increaseCap() {
+		CifraCapFile cifraCap = this.cifraViewMain.cifraCap;
+		cifraCap.setCap(cifraCap.getCap() + 1);
+	}
+
+	public void decreaseCap() {
+		CifraCapFile cifraCap = this.cifraViewMain.cifraCap;
+		int cap = cifraCap.getCap();
+		if(cap  == 0) {
+			return;
+		}
+		cifraCap.setCap(cap - 1);
+	}
 }

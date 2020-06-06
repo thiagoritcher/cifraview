@@ -1,19 +1,7 @@
 package br.com.ritcher.cifraview.app;
 
-import java.awt.Desktop;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 
 final class CifraViewKeyListener extends KeyAdapter {
@@ -39,35 +27,41 @@ final class CifraViewKeyListener extends KeyAdapter {
 		if ((e.getKeyCode() == KeyEvent.VK_F1)){
            cifraActions.showHelp();
 		}
-		else if ((e.getKeyCode() == KeyEvent.VK_O) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0) && ((e.getModifiers() & KeyEvent.ALT_MASK) != 0)){
+		else if ((e.getKeyCode() == KeyEvent.VK_O) && e.isControlDown() && e.isAltDown()){
             cifraActions.openLastFile();
 		}
-        else if ((e.getKeyCode() == KeyEvent.VK_O) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
+        else if ((e.getKeyCode() == KeyEvent.VK_O) && e.isControlDown()){
             cifraActions.openFile();
 		}
 		
-		else if ((e.getKeyCode() == KeyEvent.VK_F) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
+		else if ((e.getKeyCode() == KeyEvent.VK_F) && e.isControlDown()){
             cifraActions.changeFont();
 		}
 
-		else if ((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
+		else if ((e.getKeyCode() == KeyEvent.VK_S) && e.isControlDown()){
             cifraActions.changeFontSpacing();
 		}
 
-		else if ((e.getKeyCode() == KeyEvent.VK_A) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
+		else if ((e.getKeyCode() == KeyEvent.VK_A) && e.isControlDown()){
             cifraActions.changeAntialiasing();
 		}
-		else if ((e.getKeyCode() == KeyEvent.VK_J) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
+		else if ((e.getKeyCode() == KeyEvent.VK_J) && e.isControlDown()){
             cifraActions.decreaseTone();
 		}
-		else if ((e.getKeyCode() == KeyEvent.VK_K) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
+		else if ((e.getKeyCode() == KeyEvent.VK_K) && e.isControlDown()){
             cifraActions.increaseTone();
 		}
-		else if ((e.getKeyCode() == KeyEvent.VK_G) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
+		else if ((e.getKeyCode() == KeyEvent.VK_J) && e.isAltDown()){
+            cifraActions.decreaseCap();
+		}
+		else if ((e.getKeyCode() == KeyEvent.VK_K) && e.isAltDown()){
+            cifraActions.increaseCap();
+		}
+		else if ((e.getKeyCode() == KeyEvent.VK_G) && e.isControlDown()){
             cifraActions.searchGoogle();
 		}
 		
-		else if ((e.getKeyCode() == KeyEvent.VK_P) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)){
+		else if ((e.getKeyCode() == KeyEvent.VK_P) && e.isControlDown()){
             cifraActions.searchYoutube();
 		}
 		if ((e.getKeyCode() == KeyEvent.VK_SPACE)){

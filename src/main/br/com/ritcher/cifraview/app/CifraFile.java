@@ -42,6 +42,7 @@ class CifraFile {
 	
 	void openFile() {
 		this.cifraViewMain.cifraTone.setCurentFile(this.cifraViewMain.file);
+		this.cifraViewMain.cifraCap.setCurentFile(this.cifraViewMain.file);
 		this.cifraViewMain.lines = readFile(this.cifraViewMain.file);
 		this.cifraViewMain.updateText();
 	}

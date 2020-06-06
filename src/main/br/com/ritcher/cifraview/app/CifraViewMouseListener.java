@@ -1,27 +1,18 @@
 package br.com.ritcher.cifraview.app;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 
-import javax.swing.*;
-import javax.swing.JOptionPane;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 
 final class CifraViewMouseListener extends MouseAdapter implements ActionListener {
 	
     JPopupMenu popup;
-    JMenuItem itemOpen, itemOpenLast, itemFontSize, itemFontSpacing,  itemFontAntialias, itemYoutube, itemGoogle, itemIncreaseTone, itemDecreaseTone; 
+    JMenuItem itemOpen, itemOpenLast, itemFontSize, itemFontSpacing,  itemFontAntialias, itemYoutube, itemGoogle, itemIncreaseTone, itemDecreaseTone, itemIncreaseCap, itemDecreaseCap; 
 
     
 	/**
@@ -65,6 +56,14 @@ final class CifraViewMouseListener extends MouseAdapter implements ActionListene
 		itemDecreaseTone = new JMenuItem("Decrease tone");
         itemDecreaseTone.addActionListener(this);
         popup.add(itemDecreaseTone);
+
+        itemIncreaseCap = new JMenuItem("Increase cap");
+        itemIncreaseCap.addActionListener(this);
+        popup.add(itemIncreaseCap);
+        
+		itemDecreaseCap = new JMenuItem("Decrease cap");
+        itemDecreaseCap.addActionListener(this);
+        popup.add(itemDecreaseCap);
 
         itemFontSize = new JMenuItem("Font size");
         itemFontSize.addActionListener(this);
@@ -114,6 +113,12 @@ final class CifraViewMouseListener extends MouseAdapter implements ActionListene
         }
         else if(e.getSource() == itemDecreaseTone){
            cifraActions.decreaseTone();
+        }
+        else if(e.getSource() == itemIncreaseCap){
+           cifraActions.increaseCap();
+        }
+        else if(e.getSource() == itemDecreaseCap){
+           cifraActions.decreaseCap();
         }
 
     }

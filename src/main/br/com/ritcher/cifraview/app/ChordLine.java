@@ -1,7 +1,9 @@
 package br.com.ritcher.cifraview.app;
 
-import java.util.*;
-import java.util.regex.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChordLine {
 	
@@ -36,8 +38,8 @@ public class ChordLine {
 	public String getLine(String orig){	
 		Pattern p = Pattern.compile("([^\\/\\s]+)");
 		Matcher m = p.matcher(orig);
-		ArrayList<String> chords = new ArrayList();
-		ArrayList<Integer[]> finds = new ArrayList();
+		ArrayList<String> chords = new ArrayList<String>();
+		ArrayList<Integer[]> finds = new ArrayList<Integer[]>();
 
 		while(m.find()){
             Integer[] ps = new Integer[]{m.start(), m.end()};

@@ -5,19 +5,13 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.*;
-import java.awt.*;
 import java.io.File;
 import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.*;
 
 
 public class CifraViewMain {
@@ -42,12 +36,14 @@ public class CifraViewMain {
 	
 	CifraProperties cifraProperties = new CifraProperties(this);
 	CifraToneFile cifraTone = new CifraToneFile(this);
+	CifraCapFile cifraCap = new CifraCapFile(this);
 	
 	CifraFile cifraFile = new CifraFile(this);
 
 	public void createWindow(){
 		cifraProperties.loadProperties();
 		cifraTone.load();
+		cifraCap.load();
 		
 		frame = new JFrame("Guitar Tab Viewer");
 		frame.setSize(new Dimension(800, 600));
@@ -68,6 +64,7 @@ public class CifraViewMain {
 			public void windowClosing(WindowEvent arg0) {
 				super.windowClosing(arg0);
 				cifraProperties.saveProperties();
+				cifraCap.save();
 				cifraTone.save();
 			}
 		});
@@ -112,6 +109,8 @@ public class CifraViewMain {
 		    		"CTRL-ALT-o: Open the last created file on the selected file folder. \n" +
 		    		"CTRL-J: Decrease tone. \n" +
 		    		"CTRL-K: Increase tone. \n" +
+		    		"ALT-J: Decrease cap. \n" +
+		    		"ALT-K: Increase cap. \n" +
 		    		"CTRL-F: Change the font size. \n" +
 		    		"CTRL-S: Change the font spacing.\n" +
 		    		"CTRL-P: Searches youtube using the current file name\n" +
