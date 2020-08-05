@@ -93,7 +93,6 @@ public class CifraToneFile implements ToneSetting {
 		}
 	}
 	
-	@Override
 	public void setTone(int tone) {
 		tones.setProperty(curentFile.getParentFile().getName() + "/" + curentFile.getName(), Integer.toString(tone));
 	}

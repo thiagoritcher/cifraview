@@ -118,8 +118,26 @@ public class ChordLine {
 		return newBase + chord.substring(base.length());
 	}
 
+//	Pattern pattern = Pattern.compile("\\s*(([ABCDEFG](|#|##|b|bb|sus|maj|min|dim|aug|[1-9]|m|M|\\-|\\+|\\/|\\(|\\))+)+\\s*)+");
+	Pattern patternChord = Pattern.compile("[ABCDEFG](#|##|º|b|bb|sus|maj|min|dim|aug|[1-9]|m|M|\\-|\\+|\\(|\\))*");
+	Pattern chordLinePattern = Pattern.compile("0*1+");
+	
 	public boolean isChordLine(String line){
-		return line.matches("\\s*([ABCDEFGb#1-9mM\\-\\s/\\(\\)])+\\s*");
+//		return line.matches("\\s*([ABCDEFGb#1-9mM\\-\\s/\\(\\)])+\\s*");
+		StringBuffer result = new StringBuffer();
+		String[] parts = line.split("(\\s+|\\/)");
+		for (int i = 0; i < parts.length; i++) {
+			if(parts[i].length() == 0) {
+				continue;
+			}
+			if(patternChord.matcher(parts[i]).matches()) {
+				result.append("1");
+			}
+			else {
+				result.append("0");
+			}
+		}
+		return chordLinePattern.matcher(result).matches();
 	}
 }
 
