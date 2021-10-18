@@ -27,6 +27,9 @@ final class CifraPanel extends JPanel {
 		this.chordLine = new ChordLine();	
 		this.chordLine.setToneFile(cifraViewMain.cifraTone);
         this.reset();
+
+        chordFont = new Font(Font.MONOSPACED, Font.BOLD, this.cifraViewMain.fontsize);
+        textFont = new Font(Font.MONOSPACED, Font.PLAIN, this.cifraViewMain.fontsize);
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -56,6 +59,12 @@ final class CifraPanel extends JPanel {
 		this.chordLine.decreaseTone();
 		repaint();
 	}
+
+    private Color chordColor = Color.decode("#ff7700");
+    private Color backgroundColor = Color.white;
+    private Font chordFont;
+    private Font textFont;
+    private Color textColor = Color.black;
 	
 	@Override
 	public void paint(Graphics g1) {
@@ -71,14 +80,8 @@ final class CifraPanel extends JPanel {
 		
 		g.setRenderingHints(rh);
 		
-		g.setColor(Color.blue);
+		g.setColor(backgroundColor);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		
-		Font textFont = new Font(Font.MONOSPACED, Font.PLAIN, this.cifraViewMain.fontsize);
-		Color textColor = Color.white;
-		
-		Font chordFont = new Font(Font.MONOSPACED, Font.BOLD, this.cifraViewMain.fontsize);
-		Color chordColor = Color.YELLOW;
 		
 		FontMetrics fontMetrics = this.cifraViewMain.frame.getFontMetrics(textFont);
 		int fontHeight = fontMetrics.getHeight() - this.cifraViewMain.lineSpacing;
